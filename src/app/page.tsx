@@ -1,9 +1,13 @@
-import React from "react";
+import { Landing } from "../components/Landing";
 
 type Props = {};
 
-function Home({}: Props) {
-  return <div>Home</div>;
+function LandingPage({}: Props) {
+  return (
+    <div>
+      <Landing />
+    </div>
+  );
 }
 
-export default Home;
+export default LandingPage;
