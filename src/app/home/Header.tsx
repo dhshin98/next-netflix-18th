@@ -7,13 +7,13 @@ import { HeaderLogo } from "@/components/HeaderLogo";
 type Props = {};
 function Header({}: Props) {
   return (
-    <nav className="fixed top-[1.5rem] flex items-center left-0 space-x-25 h-[3.56rem] mb-2">
+    <nav className="fixed top-[1.5rem] left-1/2 transform -translate-x-1/2 flex items-center justify-between space-x-4 w-[375px] mb-2">
       <Link href="/home">
         <HeaderLogo />
       </Link>
-      <h1 className="text-white">TV shows</h1>
-      <h1 className="text-white">Movies</h1>
-      <h1 className="text-white">My List</h1>
+      <h1 className="text-white text-header">TV shows</h1>
+      <h1 className="text-white text-header">Movies</h1>
+      <h1 className="text-white text-header">My List</h1>
     </nav>
   );
 }
