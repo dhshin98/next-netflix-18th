@@ -19,12 +19,10 @@ const NavBar = () => {
     router.push(path);
   };
 
-  console.log(pathname);
-
   return (
     <NavBarContainer>
       <NavBarItem
-        isActive={pathname === "/"}
+        isActive={pathname === "/home"}
         text="Home"
         onClick={() => handleNavigate("/")}
         iconType="homesearch"
