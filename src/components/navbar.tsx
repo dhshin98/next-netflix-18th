@@ -27,6 +27,7 @@ const NavBar = () => {
         isActive={pathname === "/"}
         text="Home"
         onClick={() => handleNavigate("/")}
+        iconType="homesearch"
       >
         <HomeIcon />
       </NavBarItem>
@@ -34,6 +35,7 @@ const NavBar = () => {
         isActive={pathname === "/search"}
         text="Search"
         onClick={() => handleNavigate("/search")}
+        iconType="homesearch"
       >
         <SearchIcon />
       </NavBarItem>
@@ -41,6 +43,7 @@ const NavBar = () => {
         isActive={pathname === "/comingsoon"}
         text="Coming Soon"
         onClick={() => handleNavigate("/comingsoon")}
+        iconType="other"
       >
         <PlayIcon />
       </NavBarItem>
@@ -48,6 +51,7 @@ const NavBar = () => {
         isActive={pathname === "/download"}
         text="Downloads"
         onClick={() => handleNavigate("/download")}
+        iconType="other"
       >
         <DownloadIcon />
       </NavBarItem>
@@ -55,6 +59,7 @@ const NavBar = () => {
         isActive={pathname === "/more"}
         text="More"
         onClick={() => handleNavigate("/more")}
+        iconType="other"
       >
         <MoreIcon />
       </NavBarItem>
