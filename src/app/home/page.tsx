@@ -7,28 +7,6 @@ interface Movie {
   title: string;
   poster_path: string;
 }
-// MovieCard 컴포넌트: 각 영화를 카드 형태로 표현
-const MovieCard = ({ movie }: { movie: Movie }) => (
-  <div key={movie.id}>
-    <h3>{movie.title}</h3>
-    <img
-      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-      alt={`${movie.title} poster`}
-    />
-  </div>
-);
-
-// MovieList 컴포넌트: 영화 목록을 렌더링
-const MovieList = ({ movies, title }: { movies: Movie[]; title: string }) => (
-  <div>
-    <h2>{title}</h2>
-    <div>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </div>
-  </div>
-);
 
 function Home() {
   const [topRated, setTopRated] = useState<Movie[]>([]);
@@ -73,9 +51,14 @@ function Home() {
 
   return (
     <div>
-      <MovieList title="Top Rated" movies={topRated} />
-      <MovieList title="Popular" movies={popular} />
-      <MovieList title="Now Playing" movies={nowPlaying} />
+      {/* <h2>Top Rated</h2>
+      <div>{renderMovies(topRated)}</div>
+
+      <h2>Popular</h2>
+      <div>{renderMovies(popular)}</div>
+
+      <h2>Now Playing</h2>
+      <div>{renderMovies(nowPlaying)}</div> */}
     </div>
   );
 }
