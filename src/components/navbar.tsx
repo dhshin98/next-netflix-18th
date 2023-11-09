@@ -7,16 +7,57 @@ import {
   PlayIcon,
 } from "../../public/svgs";
 
-import NavBarButton from "./navbarbutton";
+import NavBarItem from "./navbaritem";
 import styled from "styled-components";
+import { useRouter, usePathname } from "next/navigation";
+
 const NavBar = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
+
+  console.log(pathname);
+
   return (
     <NavBarContainer>
-      <HomeIcon />
-      <SearchIcon />
-      <PlayIcon />
-      <DownloadIcon />
-      <MoreIcon />
+      <NavBarItem
+        isActive={pathname === "/"}
+        text="Home"
+        onClick={() => handleNavigate("/")}
+      >
+        <HomeIcon />
+      </NavBarItem>
+      <NavBarItem
+        isActive={pathname === "/search"}
+        text="Search"
+        onClick={() => handleNavigate("/search")}
+      >
+        <SearchIcon />
+      </NavBarItem>
+      <NavBarItem
+        isActive={pathname === "/comingsoon"}
+        text="Coming Soon"
+        onClick={() => handleNavigate("/comingsoon")}
+      >
+        <PlayIcon />
+      </NavBarItem>
+      <NavBarItem
+        isActive={pathname === "/download"}
+        text="Downloads"
+        onClick={() => handleNavigate("/download")}
+      >
+        <DownloadIcon />
+      </NavBarItem>
+      <NavBarItem
+        isActive={pathname === "/more"}
+        text="More"
+        onClick={() => handleNavigate("/more")}
+      >
+        <MoreIcon />
+      </NavBarItem>
     </NavBarContainer>
   );
 };
