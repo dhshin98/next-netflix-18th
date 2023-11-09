@@ -16,6 +16,10 @@ const config: Config = {
       spacing: {
         "25": "1.6rem",
       },
+      fontSize: {
+        header: "1.1rem",
+        preview: "1.7rem",
+      },
     },
   },
   plugins: [],
