@@ -1,7 +1,7 @@
 "use client";
 import { Previews } from "@/components/Previews";
 import React, { useEffect, useState } from "react";
-import tmdbApi, { requests } from "@/components/api"; // import tmdbApi and requests
+import tmdbApi, { requests } from "@/components/api";
 import styled from "styled-components";
 import { BackgroundImg } from "@/components/BackgroundImg";
 import { SquareImg } from "@/components/SquareImg";
@@ -16,6 +16,7 @@ function Home() {
   const [topRated, setTopRated] = useState<Movie[]>([]);
   const [popular, setPopular] = useState<Movie[]>([]);
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
+  const [trending, setTrending] = useState<Movie[]>([]);
   const [selectMovie, setSelectMovie] = useState<Movie>();
 
   useEffect(() => {
@@ -33,6 +34,11 @@ function Home() {
 
         const { data: popularData } = await tmdbApi.get(requests.fetchPopular);
         setPopular(popularData.results);
+
+        const { data: trendingData } = await tmdbApi.get(
+          requests.fetchTrending,
+        );
+        setTrending(trendingData.results);
       } catch (error) {
         console.error("Failed to fetch movies:", error);
       }
@@ -103,15 +109,6 @@ function Home() {
 
   return (
     <Container>
-      {/* <h2>Top Rated</h2>
-      <div>{renderMovies(topRated)}</div>
-
-      <h2>Popular</h2>
-      <div>{renderMovies(popular)}</div>
-
-      <h2>Now Playing</h2>
-      <div>{renderMovies(nowPlaying)}</div> */}
-
       <BackgroundBox>{randomMovie(topRated)}</BackgroundBox>
 
       <ImageBox className="pl-[0.75rem] mt-[29.5rem] w-[100%] flex flex-col">
@@ -124,6 +121,8 @@ function Home() {
           </ImageBox>
         }
       </ImageBox>
+
+      {/* <MovieSlider title="Previews" movies={topRated} component={Previews} /> */}
 
       <ImageBox className="pl-[0.75rem] mt-[28px] w-[100%] flex flex-col">
         <h3 className="pl-[0.25rem] text-white mb-[14px] text-popular font-bold">
@@ -153,7 +152,7 @@ function Home() {
         </h3>
         {
           <ImageBox className="flex wrap space-x-[7px] w-[100%] justify-start">
-            {renderPopulars(popular)}
+            {renderPopulars(trending)}
           </ImageBox>
         }
       </ImageBox>
@@ -177,7 +176,11 @@ export default Home;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 375px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 60px;
 `;
 
 const BackgroundBox = styled.div`
