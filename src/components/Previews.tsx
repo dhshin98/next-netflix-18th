@@ -1,10 +1,14 @@
 "use client";
 
-export const Previews = () => {
+export const Previews = ({ imageUrl }: { imageUrl: string }) => {
   return (
-    <div>
-      <span className="text-white mb-6 text-preview">Previews</span>
-      <div className="w-32 h-32 rounded-full bg-gray-200" />
+    <div style={{ width: "6.375rem", height: "6.375rem" }}>
+      <img
+        style={{ width: "6.375rem", height: "6.375rem", objectFit: "cover" }}
+        className="block rounded-full"
+        src={imageUrl}
+        alt="previewimage"
+      />
     </div>
   );
 };

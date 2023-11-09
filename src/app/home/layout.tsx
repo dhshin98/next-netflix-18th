@@ -8,9 +8,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section>
+    <section className="flex items-center justify-center">
       <Header />
-      {children}
+      <div className="self-start w-full">{children}</div>
       <NavBar />
     </section>
   );

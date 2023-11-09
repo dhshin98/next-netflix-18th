@@ -2,6 +2,7 @@
 import { Previews } from "@/components/Previews";
 import React, { useEffect, useState } from "react";
 import tmdbApi, { requests } from "@/components/api"; // import tmdbApi and requests
+import styled from "styled-components";
 
 interface Movie {
   id: number;
@@ -40,7 +41,7 @@ function Home() {
   // 영화 목록을 렌더링하는 함수
   const renderMovies = (movies: Movie[]) => {
     return movies.map((movie) => (
-      <div key={movie.id}>
+      <div key={movie.id} className="flex-shrink-0">
         <h3>{movie.title}</h3>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -50,8 +51,25 @@ function Home() {
     ));
   };
 
+  const renderPreviews = (movies: Movie[]) => {
+    return movies.map((movie) => {
+      const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      return (
+        <div key={movie.id}>
+          {/* <h3>{movie.title}</h3>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={`${movie.title} poster`}
+          /> */}
+
+          <Previews imageUrl={imageUrl} />
+        </div>
+      );
+    });
+  };
+
   return (
-    <div>
+    <Container>
       {/* <h2>Top Rated</h2>
       <div>{renderMovies(topRated)}</div>
 
@@ -60,8 +78,31 @@ function Home() {
 
       <h2>Now Playing</h2>
       <div>{renderMovies(nowPlaying)}</div> */}
-    </div>
+      <PreviewBox className="pl-[0.75rem] mt-[29.5rem] w-[100%] flex flex-col">
+        <span className="pl-[0.25rem] text-white mt-[2.69rem] mb-[1.44rem] text-preview font-bold">
+          Previews
+        </span>
+        {
+          <PreviewBox className="flex wrap space-x-[0.44rem] w-[100%] justify-start">
+            {renderPreviews(topRated)}
+          </PreviewBox>
+        }
+      </PreviewBox>
+    </Container>
   );
 }
 
 export default Home;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: start;
+`;
+
+const PreviewBox = styled.div`
+  overflow: auto;
+  list-style-type: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
