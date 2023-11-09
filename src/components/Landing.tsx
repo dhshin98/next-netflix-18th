@@ -9,7 +9,6 @@ export const Landing = () => {
 
   return (
     <Lottie
-      loop
       animationData={netflixJson}
       play
       style={{ width: 350 }}
