@@ -7,7 +7,10 @@ import { HeaderLogo } from "@/components/HeaderLogo";
 type Props = {};
 function Header({}: Props) {
   return (
-    <nav className="fixed top-[1.5rem] px-[1rem] flex items-center justify-between space-x-25">
+    <nav
+      style={{ zIndex: 999 }}
+      className="fixed top-[1.5rem] px-[1rem] flex items-center justify-between space-x-25"
+    >
       <Link href="/home">
         <HeaderLogo />
       </Link>
