@@ -66,7 +66,7 @@ function Home() {
     }, [movies]);
 
     return selectMovie ? (
-      <div>
+      <div className="flex items-center justify-center w-[100%]">
         <BackgroundImg
           imageUrl={`https://image.tmdb.org/t/p/w500${selectMovie.poster_path}`}
         />
@@ -177,6 +177,7 @@ export default Home;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const BackgroundBox = styled.div`
