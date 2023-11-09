@@ -19,6 +19,7 @@ const config: Config = {
       fontSize: {
         header: "1.1rem",
         preview: "1.7rem",
+        popular: "1.3rem",
       },
     },
   },
