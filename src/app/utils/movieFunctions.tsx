@@ -3,6 +3,8 @@ import { Previews } from "@/components/Previews";
 import { BackgroundImg } from "@/components/BackgroundImg";
 import { useEffect, useState } from "react";
 import { SquareForRankingIcon, Top10Icon } from "../../../public/svgs";
+import Image from "next/image";
+
 interface Movie {
   id: number;
   title: string;
@@ -36,6 +38,12 @@ export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
 
   return selectMovie ? (
     <div className="flex flex-col items-center justify-center w-[100%]">
+      {/* <Image
+        src={`https://image.tmdb.org/t/p/w500${selectMovie.poster_path}`}
+        alt={`${selectMovie.title} poster`}
+        width={375}
+        height={415}
+      /> */}
       <BackgroundImg imageUrl={getImageUrl(selectMovie.poster_path)} />
       <span className="flex align-center mt-2 md-2">
         <div className="relative mr-2">

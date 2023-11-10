@@ -26,25 +26,27 @@ function Home() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const { data: nowPlayingData } = await tmdbApi.get(
-          requests.fetchNowPlaying,
-        );
-        const { data: topRatedData } = await tmdbApi.get(
-          requests.fetchTopRated,
-        );
-        const { data: popularData } = await tmdbApi.get(requests.fetchPopular);
-        const { data: trendingData } = await tmdbApi.get(
-          requests.fetchTrending,
-        );
-        const { data: horrorData } = await tmdbApi.get(
-          requests.fetchHorrorMovies,
-        );
+        // API 요청을 한번에 보냄
+        const [
+          nowPlayingData,
+          topRatedData,
+          popularData,
+          trendingData,
+          horrorData,
+        ] = await Promise.all([
+          tmdbApi.get(requests.fetchNowPlaying),
+          tmdbApi.get(requests.fetchTopRated),
+          tmdbApi.get(requests.fetchPopular),
+          tmdbApi.get(requests.fetchTrending),
+          tmdbApi.get(requests.fetchHorrorMovies),
+        ]);
 
-        setNowPlaying(nowPlayingData.results);
-        setTopRated(topRatedData.results);
-        setPopular(popularData.results);
-        setTrending(trendingData.results);
-        setHorror(horrorData.results);
+        // 상태 한번에 업데이트
+        setNowPlaying(nowPlayingData.data.results);
+        setTopRated(topRatedData.data.results);
+        setPopular(popularData.data.results);
+        setTrending(trendingData.data.results);
+        setHorror(horrorData.data.results);
       } catch (error) {
         console.error("Failed to fetch movies:", error);
       }
