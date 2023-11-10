@@ -24,7 +24,7 @@ const NavBar = () => {
       <NavBarItem
         isActive={pathname === "/home"}
         text="Home"
-        onClick={() => handleNavigate("/")}
+        onClick={() => handleNavigate("/home")}
         iconType="homesearch"
       >
         <HomeIcon />
