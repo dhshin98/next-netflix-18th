@@ -1,5 +1,5 @@
 import "./globals.css";
-import inter from "@next/font/google";
+
 export const metadata = {
   title: {
     default: "Netflix-Reddigg",

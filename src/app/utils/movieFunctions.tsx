@@ -25,7 +25,7 @@ export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
   const [idx, setIdx] = useState<number | undefined>();
   useEffect(() => {
     if (movies.length > 0) {
-      //0-9위 사이의 영화만 추려낸다
+      //0-9위 사이의 영화만 추려내기
       const maxIndex = Math.min(movies.length, 10);
       const randomIndex = Math.floor(Math.random() * maxIndex);
       const movie = movies[randomIndex];
