@@ -2,7 +2,7 @@ import { SquareImg } from "@/components/SquareImg";
 import { Previews } from "@/components/Previews";
 import { BackgroundImg } from "@/components/BackgroundImg";
 import { useEffect, useState } from "react";
-
+import { SquareForRankingIcon, Top10Icon } from "../../../public/svgs";
 interface Movie {
   id: number;
   title: string;
@@ -22,17 +22,30 @@ interface Movie {
 //페이지의 가장 위쪽에 랜덤으로 함수를 보여주는 함수
 export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
   const [selectMovie, setSelectMovie] = useState<Movie | undefined>();
+  const [idx, setIdx] = useState<number | undefined>();
   useEffect(() => {
     if (movies.length > 0) {
-      const randomIndex = Math.floor(Math.random() * movies.length);
+      //0-9위 사이의 영화만 추려내기
+      const maxIndex = Math.min(movies.length, 10);
+      const randomIndex = Math.floor(Math.random() * maxIndex);
       const movie = movies[randomIndex];
       setSelectMovie(movie);
+      setIdx(randomIndex);
     }
   }, [movies]);
 
   return selectMovie ? (
-    <div className="flex items-center justify-center w-[100%]">
+    <div className="flex flex-col items-center justify-center w-[100%]">
       <BackgroundImg imageUrl={getImageUrl(selectMovie.poster_path)} />
+      <span className="flex align-center mt-2">
+        <div className="relative mr-2">
+          <SquareForRankingIcon />
+          <Top10Icon className="absolute inset-0 m-auto" />
+        </div>
+        <span className=" text-xs font-bold leading-tight text-white">
+          #{idx} in Korea Today
+        </span>
+      </span>
     </div>
   ) : null;
 };

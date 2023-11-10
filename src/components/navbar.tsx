@@ -70,7 +70,7 @@ const NavBarContainer = styled.nav`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 375px;
+  width: 400px;
   height: 53px;
   background-color: #000;
   z-index: 999;
