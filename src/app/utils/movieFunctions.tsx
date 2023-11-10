@@ -1,25 +1,13 @@
-import { SquareImg } from "@/components/SquareImg";
-import { Previews } from "@/components/Previews";
+import { SquareImg, Previews } from "@/components/ImageType";
 import { BackgroundImg } from "@/components/BackgroundImg";
 import { useEffect, useState } from "react";
 import { SquareForRankingIcon, Top10Icon } from "../../../public/svgs";
-import Image from "next/image";
 
 interface Movie {
   id: number;
   title: string;
   poster_path: string;
 }
-
-//영화 이미지 렌더링해 가져온는 함수
-// export const renderMovies = (movies: Movie[]) => {
-//   return movies.map((movie) => (
-//     <div key={movie.id}>
-//       <h3>{movie.title}</h3>
-//       <img src={getImageUrl(movie.poster_path)} alt={`${movie.title} poster`} />
-//     </div>
-//   ));
-// };
 
 //페이지의 가장 위쪽에 랜덤으로 함수를 보여주는 함수
 export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
@@ -38,12 +26,6 @@ export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
 
   return selectMovie ? (
     <div className="flex flex-col items-center justify-center w-[100%]">
-      {/* <Image
-        src={`https://image.tmdb.org/t/p/w500${selectMovie.poster_path}`}
-        alt={`${selectMovie.title} poster`}
-        width={375}
-        height={415}
-      /> */}
       <BackgroundImg imageUrl={getImageUrl(selectMovie.poster_path)} />
       <span className="flex align-center mt-2 md-2">
         <div className="relative mr-2">
