@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const MainButtons = () => {
   return (
-    <MainButtonContainer>
+    <MainButtonContainer className="flex-basis">
       <IconContainer>
         <PlusIcon />
         <IconCaption>My List</IconCaption>

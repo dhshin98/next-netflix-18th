@@ -20,7 +20,7 @@ const NavBar = () => {
   };
 
   return (
-    <NavBarContainer>
+    <NavBarContainer className="flex-basis">
       <NavBarItem
         isActive={pathname === "/home"}
         text="Home"
@@ -70,7 +70,7 @@ const NavBarContainer = styled.nav`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px;
+  width: 375px;
   height: 53px;
   background-color: #000;
   z-index: 999;

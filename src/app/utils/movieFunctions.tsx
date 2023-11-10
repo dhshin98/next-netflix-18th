@@ -37,14 +37,14 @@ export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
   return selectMovie ? (
     <div className="flex flex-col items-center justify-center w-[100%]">
       <BackgroundImg imageUrl={getImageUrl(selectMovie.poster_path)} />
-      <span className="flex align-center mt-2">
+      <span className="flex align-center mt-2 md-2">
         <div className="relative mr-2">
           <SquareForRankingIcon />
           <Top10Icon className="absolute inset-0 m-auto" />
         </div>
-        <span className=" text-xs font-bold leading-tight text-white">
+        <div className=" text-xs font-bold leading-tight text-white md-2">
           #{idx} in Korea Today
-        </span>
+        </div>
       </span>
     </div>
   ) : null;

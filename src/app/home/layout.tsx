@@ -10,8 +10,10 @@ export default function RootLayout({
   return (
     <section className="flex flex-col justify-between items-center h-screen w-full relative">
       <Header />
-      <div className="self-start">{children}</div>
-      <NavBar />
+      <div className="self-start">
+        {children}
+        <NavBar />
+      </div>
     </section>
   );
 }
