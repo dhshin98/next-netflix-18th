@@ -5,7 +5,8 @@ import tmdbApi, { requests } from "@/components/api";
 import styled from "styled-components";
 import { BackgroundImg } from "@/components/BackgroundImg";
 import { SquareImg } from "@/components/SquareImg";
-
+import MainButtons from "@/components/MainButtons";
+import { PlusIcon, MainPlayIcon, InfoIcon } from "../../../public/svgs";
 interface Movie {
   id: number;
   title: string;
@@ -112,6 +113,7 @@ function Home() {
       <BackgroundBox>{randomMovie(topRated)}</BackgroundBox>
 
       <ImageBox className="pl-[0.75rem] mt-[29.5rem] w-[100%] flex flex-col">
+        <MainButtons />
         <h3 className="pl-[0.25rem] text-white mb-[1.44rem] text-preview font-bold">
           Previews
         </h3>
