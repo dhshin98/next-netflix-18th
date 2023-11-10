@@ -1,5 +1,10 @@
-import type { Metadata } from "next";
 import "./globals.css";
+
+export const metadata = {
+  title: {
+    default: "Netflix-Reddigg",
+  },
+};
 
 export default function RootLayout({
   children,

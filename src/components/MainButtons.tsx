@@ -30,6 +30,7 @@ const MainButtonContainer = styled.div`
   gap: 3rem;
   align-items: center;
   color: white;
+  margin-top: 0.69rem;
   margin-bottom: 1.44rem;
 `;
 const IconContainer = styled.div`

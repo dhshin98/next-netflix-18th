@@ -1,7 +1,6 @@
 //메인페이지
 import Header from "./Header";
 import NavBar from "@/components/navbar";
-import styled from "styled-components";
 
 export default function RootLayout({
   children,
