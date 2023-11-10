@@ -20,10 +20,8 @@ export const NavbarItem = styled.div<NavBarItemProps>`
   }
 
   & > svg:not(.homesearch-icon) {
-    /* 나머지 아이콘은 fill과 stroke 색상을 변경 */
+    /* 나머지 아이콘은  stroke 만 변경 */
     & > path {
-      stroke: ${({ isActive }) =>
-        isActive ? "rgba(255, 255, 255, 1)" : "rgba(140, 135, 135, 1)"};
       fill: ${({ isActive }) =>
         isActive ? "rgba(255, 255, 255, 1)" : "rgba(140, 135, 135, 1)"};
     }
