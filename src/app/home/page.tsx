@@ -22,37 +22,23 @@ function Home() {
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
   const [trending, setTrending] = useState<Movie[]>([]);
   const [horror, setHorror] = useState<Movie[]>([]);
-
+  // API 요청 별도의 함수로 분리
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchData = async (apiCall, setState) => {
       try {
-        const { data: nowPlayingData } = await tmdbApi.get(
-          requests.fetchNowPlaying,
-        );
-        const { data: topRatedData } = await tmdbApi.get(
-          requests.fetchTopRated,
-        );
-        const { data: popularData } = await tmdbApi.get(requests.fetchPopular);
-        const { data: trendingData } = await tmdbApi.get(
-          requests.fetchTrending,
-        );
-        const { data: horrorData } = await tmdbApi.get(
-          requests.fetchHorrorMovies,
-        );
-
-        setNowPlaying(nowPlayingData.results);
-        setTopRated(topRatedData.results);
-        setPopular(popularData.results);
-        setTrending(trendingData.results);
-        setHorror(horrorData.results);
+        const response = await apiCall();
+        setState(response.data.results);
       } catch (error) {
-        console.error("Failed to fetch movies:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchMovies();
+    fetchData(() => tmdbApi.get(requests.fetchNowPlaying), setNowPlaying);
+    fetchData(() => tmdbApi.get(requests.fetchTopRated), setTopRated);
+    fetchData(() => tmdbApi.get(requests.fetchPopular), setPopular);
+    fetchData(() => tmdbApi.get(requests.fetchTrending), setTrending);
+    fetchData(() => tmdbApi.get(requests.fetchHorrorMovies), setHorror);
   }, []);
-
   return (
     <Container>
       <RandomMovie movies={topRated} />

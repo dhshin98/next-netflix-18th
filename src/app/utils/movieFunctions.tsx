@@ -1,50 +1,46 @@
-import { SquareImg } from "@/components/SquareImg";
-import { Previews } from "@/components/Previews";
-import { BackgroundImg } from "@/components/BackgroundImg";
-import { useEffect, useState } from "react";
+import { SquareImg, Previews, BackgroundImg } from "@/components/ImageType";
+import { useEffect, useState, useMemo } from "react";
 import { SquareForRankingIcon, Top10Icon } from "../../../public/svgs";
+
 interface Movie {
   id: number;
   title: string;
   poster_path: string;
 }
 
-//영화 이미지 렌더링해 가져온는 함수
-// export const renderMovies = (movies: Movie[]) => {
-//   return movies.map((movie) => (
-//     <div key={movie.id}>
-//       <h3>{movie.title}</h3>
-//       <img src={getImageUrl(movie.poster_path)} alt={`${movie.title} poster`} />
-//     </div>
-//   ));
-// };
-
 //페이지의 가장 위쪽에 랜덤으로 함수를 보여주는 함수
 export const RandomMovie = ({ movies }: { movies: Movie[] }) => {
-  const [selectMovie, setSelectMovie] = useState<Movie | undefined>();
-  const [idx, setIdx] = useState<number | undefined>();
+  const [selectedData, setSelectedData] = useState<
+    { movie: Movie; index: number } | undefined
+  >();
+
   useEffect(() => {
     if (movies.length > 0) {
       //0-9위 사이의 영화만 추려내기
-      const maxIndex = Math.min(movies.length, 10);
-      const randomIndex = Math.floor(Math.random() * maxIndex);
-      const movie = movies[randomIndex];
-      setSelectMovie(movie);
-      setIdx(randomIndex);
+      setSelectedData(() => {
+        const maxIndex = Math.min(movies.length, 10);
+        const randomIndex = Math.floor(Math.random() * maxIndex);
+        return { movie: movies[randomIndex], index: randomIndex };
+      });
     }
   }, [movies]);
 
-  return selectMovie ? (
+  // useMemo를 통해 selectedData의 값이 변경될 때만 새로 계산
+  const { movie, index } = useMemo(() => {
+    return selectedData || { movie: undefined, index: undefined };
+  }, [selectedData]);
+
+  return movie ? (
     <div className="flex flex-col items-center justify-center w-[100%]">
-      <BackgroundImg imageUrl={getImageUrl(selectMovie.poster_path)} />
-      <span className="flex align-center mt-2">
+      <BackgroundImg imageUrl={getImageUrl(movie.poster_path)} />
+      <span className="flex align-center mt-2 md-2">
         <div className="relative mr-2">
           <SquareForRankingIcon />
           <Top10Icon className="absolute inset-0 m-auto" />
         </div>
-        <span className=" text-xs font-bold leading-tight text-white">
-          #{idx} in Korea Today
-        </span>
+        <div className=" text-xs font-bold leading-tight text-white md-2">
+          #{index} in Korea Today
+        </div>
       </span>
     </div>
   ) : null;
